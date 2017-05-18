@@ -4,3 +4,4 @@ All Jobs for
   %ul
     = job.title
     at #{job.company.name}
+    =link_to "Edit", edit_company_job_path(@company, job)

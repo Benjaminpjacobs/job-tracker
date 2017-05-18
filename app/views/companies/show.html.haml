@@ -1,4 +1,4 @@
 All Jobs for
 %strong= @company.name
 - @company.jobs.each do |job|
-  %ul= link_to "Edit", edit_company_path(company)
+  %ul= job.title 
