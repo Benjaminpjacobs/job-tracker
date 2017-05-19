@@ -31,7 +31,6 @@ describe "A user can update a job" do
     new_description = "Description 2"
     
     visit company_jobs_path(company)
-    save_and_open_page
 
     click_link "Edit"
 

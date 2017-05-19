@@ -1,0 +1,5 @@
+%h2 Edit Category
+-if @category.errors.any?
+  -@category.errors.full_messages.each do |e|
+    =e
+= render partial: "form"

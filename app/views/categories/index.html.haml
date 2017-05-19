@@ -1,0 +1,7 @@
+%h1 Category List:
+%ul
+  -@categories.each do |category|
+    %li
+      =category.title
+      =link_to "Edit", edit_category_path(category)
+      =link_to "Delete", category_path(category), method: :delete

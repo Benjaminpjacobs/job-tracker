@@ -1,0 +1,8 @@
+%h2 Enter a New Category!
+-if @category.errors.any?
+  -@category.errors.full_messages.each do |e|
+    = e 
+    %br
+    %br
+
+= render partial: "form"
