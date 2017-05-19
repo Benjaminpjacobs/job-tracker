@@ -1,1 +1,10 @@
 %h2= @category.title
+
+%ul
+  -@category.jobs.each do |job|
+    %li
+      =job.title
+      %ul
+        %li=job.description
+        %li=job.level_of_interest
+        %li=job.city
