@@ -3,6 +3,7 @@ require 'rails_helper'
 describe "A user can update a job" do
   scenario "from a jobs show page" do
     company = create(:company_with_job)
+    category1, category2 = create_list(:category, 2)
     job = company.jobs.first
     new_title = "New title"
     new_description = "Description 2"
@@ -26,6 +27,7 @@ describe "A user can update a job" do
 
   scenario "from a company show page" do
     company = create(:company_with_job)
+    category1, category2 = create_list(:category, 2)
     job = company.jobs.first
     new_title = "New title"
     new_description = "Description 2"

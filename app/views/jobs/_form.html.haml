@@ -10,3 +10,4 @@
   = f.label :category
   = f.select :category_id, @categories.map {|c| [c.title, c.id] }
   = link_to "or Create New Category", new_company_category_path(@company)
+  = f.submit

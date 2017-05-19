@@ -5,6 +5,7 @@ FactoryGirl.define do
     level_of_interest {generate(:level_of_interest)}
     city {generate(:city)}
     category
+    company
   end
 
   sequence :title do |n| 
