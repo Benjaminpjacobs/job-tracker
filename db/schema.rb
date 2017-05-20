@@ -21,8 +21,10 @@ ActiveRecord::Schema.define(version: 20170520164012) do
   end
 
   create_table "comments", force: :cascade do |t|
-    t.string  "content"
-    t.integer "job_id"
+    t.string   "content"
+    t.integer  "job_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
   end
 
   add_index "comments", ["job_id"], name: "index_comments_on_job_id", using: :btree

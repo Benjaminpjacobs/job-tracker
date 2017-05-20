@@ -11,8 +11,9 @@ class CommentsController < ApplicationController
     @comment = Comment.new(comment_params)
     if @comment.save
       redirect_to company_job_path(@company, @job)
+    else
+      render :new
     end
-    
   end
 
   private
