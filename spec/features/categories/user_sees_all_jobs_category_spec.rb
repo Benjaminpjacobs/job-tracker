@@ -7,7 +7,7 @@ describe "From a category show page" do
     job2 = category.jobs.last
 
     visit category_path(category)
-    save_and_open_page
+
     expect(page).to have_content(job1.title)
     expect(page).to have_content(job2.title)
   end

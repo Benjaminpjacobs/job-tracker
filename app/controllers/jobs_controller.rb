@@ -38,13 +38,14 @@ class JobsController < ApplicationController
   end
 
   def destroy
+    @job.destroy
     redirect_to @company
   end
 
   private
 
     def job_params
-      params.require(:job).permit(:title, :description, :level_of_interest, :city, :id)
+      params.require(:job).permit(:title, :description, :level_of_interest, :city, :id, :category_id)
     end
 
     def set_company

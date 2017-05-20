@@ -1,4 +1,10 @@
-= form_for @company do |f|
-  = f.label :name
-  = f.text_field :name
-  = f.submit
+%div.container
+  %div.row
+    %div.col-md-6
+      .form-horizontal
+      = form_for @company do |f|
+        %div.form-group
+          = f.label :name
+          = f.text_field :name
+          = f.submit
+

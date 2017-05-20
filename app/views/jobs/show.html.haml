@@ -1,12 +1,29 @@
-Title: #{@job.title}
-%br/
-Description: #{@job.description}
-%br/
-Level of Interest: #{@job.level_of_interest}
-%br/
-City: #{@job.city}
-%br/
-Company: #{link_to @job.company.name, company_path(@job.company)}
-%br/
-=link_to "Edit", edit_company_job_path(@job.company, @job)
-=link_to "Delete", company_job_path(@job.company, @job), method: :delete
+%div.container
+  %div.row
+    %div.form-group.col-md-4.col-md-offset-1
+      %h2
+        = @job.title
+      %br/
+      %div.list-group
+        %div.list-group-item
+          %strong.list-group-item-heading Description: 
+          .list-group-item-text=@job.description
+          %br/
+          %strong.list-group-item-heading Level of Interest: 
+          .list-group-item-text=@job.level_of_interest
+          %br/
+          %strong.list-group-item-heading City: 
+          .list-group-item-text=@job.city
+          %br/
+          %strong.list-group-item-heading Company: 
+          .list-group-item-text
+            =link_to @job.company.name, company_path(@job.company)
+          %br/
+          %strong.list-group-item-heading Category: 
+          .list-group-item-text
+            =@job.category.title
+          %br/
+          .list-group-item-text
+            =link_to "Edit", edit_company_job_path(@job.company, @job)
+            =link_to "Delete", company_job_path(@job.company, @job), method: :delete
+

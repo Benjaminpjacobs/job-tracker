@@ -1,8 +1,21 @@
-All Jobs for
-%strong= @company.name
-- @jobs.each do |job|
-  %ul
-    %li= job.title
-    at #{job.company.name}
-    =link_to "Edit", edit_company_job_path(@company, job)
-    =link_to "Delete", company_job_path(@company, job), method: :delete
+%div.container
+  %div.row
+    .col-md-3
+      =link_to "Add Job", new_company_job_path(@company)
+  %div.row
+    .form-group.col-md-4.col-md-offset-1
+      %h3 
+        All Jobs for 
+        %strong= @company.name
+      %div.list-group
+      - @jobs.each do |job|
+        %div.list-group-item
+          %h3.list-group-item-heading
+            = link_to job.title, company_job_path(@company, job)
+          .list-group-item-text
+          =job.description
+          %br/
+          =link_to "Edit", edit_company_job_path(@company, job)
+          =link_to "Delete", company_job_path(@company, job), method: :delete
+
+  

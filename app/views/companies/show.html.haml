@@ -1,4 +1,7 @@
-All Jobs for
-%strong= @company.name
-- @company.jobs.each do |job|
-  %ul= job.title 
+%div.container
+  %div.row
+    %div.form-group.col-md-4.col-md-offset-1
+      %h2 All Jobs for
+        %strong= @company.name
+        - @company.jobs.each do |job|
+          =job.title 

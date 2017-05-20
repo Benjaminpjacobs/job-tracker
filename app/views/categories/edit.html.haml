@@ -1,5 +1,8 @@
-%h2 Edit Category
--if @category.errors.any?
-  -@category.errors.full_messages.each do |e|
-    =e
-= render partial: "form"
+%div.container
+  %div.row
+    %div.form-group.col-md-4.col-md-offset-1
+      %h2 Edit Category
+      -if @category.errors.any?
+        -@category.errors.full_messages.each do |e|
+          =e
+      = render partial: "form"

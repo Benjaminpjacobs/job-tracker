@@ -1,8 +1,13 @@
-%h3 All Companies
-
-- @companies.each do |company|
-  %div{:class => "company_#{company.id}"}
-    = company.id
-    = link_to company.name, company_path(company)
-    = link_to "Edit", edit_company_path(company)
-    = link_to "Delete", company_path(company), method: "delete"
+%div.container
+  %div.row
+    %div.col-md-4.col-md-offset-1
+      %h3 All Companies
+      %div.list-group
+      - @companies.each do |company|
+        %div{:class => "company_#{company.id}"}
+          %div.list-group-item
+            %h3.list-group-item-heading= link_to company.name, company_path(company)
+            = link_to "Edit", edit_company_path(company)
+            = link_to "Delete", company_path(company), method: "delete"
+      %br
+      = link_to "Add Company", new_company_path
