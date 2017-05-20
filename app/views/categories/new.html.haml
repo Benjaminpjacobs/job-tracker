@@ -2,10 +2,7 @@
   %div.row
     %div.form-group.col-md-4.col-md-offset-1
       %h2 Enter a New Category!
-      -if @category.errors.any?
-        -@category.errors.full_messages.each do |e|
-          = e 
-          %br
-          %br
-
+      = render partial: "shared/errors", locals: {target: @category}
+      %br
+      %br
       = render partial: "form"
