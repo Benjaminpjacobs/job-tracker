@@ -26,4 +26,4 @@
           .list-group-item-text
             =link_to "Edit", edit_company_job_path(@job.company, @job)
             =link_to "Delete", company_job_path(@job.company, @job), method: :delete
-
+        =link_to "New Comment", new_company_job_comment_path(@job.company, @job)

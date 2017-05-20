@@ -1,0 +1,10 @@
+%div.container
+  %div.row
+    %div.col-md-6
+      .form-horizontal
+      = form_for [@company, @job, @comment] do |f|
+        %div.form-group
+          .form-control
+            = f.label :contennt
+            = f.text_field :content
+          .form-control= f.submit
