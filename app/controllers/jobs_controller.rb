@@ -1,5 +1,9 @@
 class JobsController < ApplicationController
   def index
-    @jobs = Job.group_by_city
+    if params["sorted"] == "location"
+      @jobs = Job.group_by_city
+    else
+      @jobs = Job.group_by_interest
+    end
   end
 end

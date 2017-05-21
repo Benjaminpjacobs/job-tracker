@@ -5,8 +5,21 @@ class Job < ActiveRecord::Base
   has_many :comments, dependent: :destroy
 
   def self.group_by_city
-    Job.distinct.pluck(:city).map do |city|
-      {city => Job.where('city = ?', city)}
-    end.inject(:merge).sort_by{|k, v| k}
+    group_by(:city).sort.to_h
+  end
+
+  def self.group_by_interest
+    collection = group_by(:level_of_interest).sort.reverse.to_h
+    collection = tag_keys(collection)
+  end
+
+  def self.group_by(key_sym)
+    Job.distinct.pluck(key_sym).map do |key|
+      {key => Job.where("#{key_sym.to_s} = ?", key)}
+    end.inject(:merge)
+  end
+
+  def self.tag_keys(hash)
+    hash.transform_keys{ |key| "Interest Level #{key}" }
   end
 end
