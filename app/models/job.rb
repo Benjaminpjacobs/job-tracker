@@ -10,16 +10,16 @@ class Job < ActiveRecord::Base
 
   def self.group_by_interest
     collection = group_by(:level_of_interest).sort.reverse.to_h
-    collection = tag_keys(collection)
+    tag_keys(collection)
   end
+private
+    def self.group_by(key_sym)
+      Job.distinct.pluck(key_sym).map do |key|
+        {key => Job.where("#{key_sym.to_s} = ?", key)}
+      end.inject(:merge)
+    end
 
-  def self.group_by(key_sym)
-    Job.distinct.pluck(key_sym).map do |key|
-      {key => Job.where("#{key_sym.to_s} = ?", key)}
-    end.inject(:merge)
-  end
-
-  def self.tag_keys(hash)
-    hash.transform_keys{ |key| "Interest Level #{key}" }
-  end
+    def self.tag_keys(hash)
+      hash.transform_keys{ |key| "Interest Level #{key}" }
+    end
 end
