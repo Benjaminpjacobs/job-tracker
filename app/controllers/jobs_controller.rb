@@ -1,11 +1,18 @@
 class JobsController < ApplicationController
-  before_action :set_company, only: [:index, :new, :create, :edit, :destroy]
+  before_action :set_company, only: [:new, :create, :edit, :destroy]
   before_action :set_job, only: [:show, :edit, :update, :destroy]
 
   def index
-    @jobs = @company.jobs
-    @contact = Contact.new
-    @contacts = @company.contacts
+    if params.include?('sorted')
+      @jobs = Job.group_by_city
+      redirect_to "sorted/index"
+
+    else
+      @company = Company.find(params[:company_id])
+      @jobs = @company.jobs
+      @contact = Contact.new
+      @contacts = @company.contacts      
+    end
   end
 
   def new

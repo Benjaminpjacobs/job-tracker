@@ -3,4 +3,10 @@ class Job < ActiveRecord::Base
   belongs_to :company
   belongs_to :category
   has_many :comments, dependent: :destroy
+
+  def self.group_by_city
+    Job.distinct.pluck(:city).map do |city|
+      {city => Job.where('city = ?', city)}
+    end.inject(:merge)
+  end
 end
