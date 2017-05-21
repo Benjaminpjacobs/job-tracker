@@ -12,6 +12,16 @@ class Job < ActiveRecord::Base
     collection = group_by(:level_of_interest).sort.reverse.to_h
     tag_keys(collection)
   end
+
+  def self.jobs_per(column)
+    Job.group(column).count(:id).sort_by{|k, v| k}.reverse.to_h
+  end
+
+  def self.jobs_in_city(city)
+    {city => Job.where(city: city)}
+  end
+
+
 private
     def self.group_by(key_sym)
       Job.distinct.pluck(key_sym).map do |key|
