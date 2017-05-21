@@ -1,13 +1,12 @@
 class CommentsController < ApplicationController
+  before_action :set_company
+  before_action :set_job
+
   def new
     @comment = Comment.new
-    @company = Company.find(params[:company_id])
-    @job = Job.find(params[:job_id])
   end
 
   def create
-    @company = Company.find(params[:company_id])
-    @job = Job.find(params[:job_id])
     @comment = Comment.new(comment_params)
     if @comment.save
       redirect_to company_job_path(@company, @job)
@@ -16,9 +15,23 @@ class CommentsController < ApplicationController
     end
   end
 
+  def destroy
+    @comment = Comment.find(params[:id])
+    @comment.destroy
+    redirect_to company_job_path(@company, @job)
+  end
+
   private
 
     def comment_params
       params.require(:comment).permit(:content, :job_id)
+    end
+
+    def set_company
+      @company = Company.find(params[:company_id])
+    end
+
+    def set_job
+      @job = Job.find(params[:job_id])
     end
 end

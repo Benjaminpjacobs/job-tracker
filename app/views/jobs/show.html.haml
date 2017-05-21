@@ -34,5 +34,6 @@
             -@comments.each do |comment|
               %div.list-group-item.comment
                 =comment.content
+                .text-right=link_to "Delete", company_job_comment_path(@job.company, @job, comment), method: :delete
             
         
