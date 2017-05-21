@@ -7,6 +7,6 @@ class Job < ActiveRecord::Base
   def self.group_by_city
     Job.distinct.pluck(:city).map do |city|
       {city => Job.where('city = ?', city)}
-    end.inject(:merge)
+    end.inject(:merge).sort_by{|k, v| k}
   end
 end

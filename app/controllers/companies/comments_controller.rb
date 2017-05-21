@@ -1,4 +1,4 @@
-class CommentsController < ApplicationController
+class Companies::CommentsController < ApplicationController
   before_action :set_company
   before_action :set_job
 

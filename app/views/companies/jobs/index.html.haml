@@ -1,0 +1,51 @@
+%div.container
+  %div.row
+    =link_to "Add Job", new_company_job_path(@company)
+  %div.row  
+    .col-md-4 
+      %h3 
+        All Jobs for 
+        %strong= @company.name
+      %div.list-group
+      - @jobs.each do |job|
+        %div.list-group-item
+          %h3.list-group-item-heading
+            = link_to job.title, company_job_path(@company, job)
+          .list-group-item-text
+          =job.description
+          %br/
+          =link_to "Edit", edit_company_job_path(@company, job)
+          =link_to "Delete", company_job_path(@company, job), method: :delete
+    .col-md-4
+      %h3
+        Contacts for
+        %strong=@company.name
+      %div.list-group
+      - @contacts.each do |contact|
+        %div.list-group-item
+          %h4.list-group-item-heading
+            =contact.name
+          .list-group-item-text
+          =contact.position
+          %br/
+          =contact.email
+      %br
+      %br
+      %div.list-group
+        %div.list-group-item
+          %h5.list-group-item-heading Add New Contact:
+          = form_for [@company, @contact] do |f|
+            .list-group-item-text
+            = f.hidden_field :company_id, value: @company.id
+            = f.label :name
+            = f.text_field :name
+            %br
+            = f.label :position
+            = f.text_field :position
+            %br
+            = f.label :email
+            = f.text_field :email
+            %br
+            = f.submit
+
+
