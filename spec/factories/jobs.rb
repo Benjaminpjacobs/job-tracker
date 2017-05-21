@@ -6,8 +6,18 @@ FactoryGirl.define do
     city {generate(:city)}
     category
     company
-  end
+  
 
+    factory :job_in_city do
+      title {generate(:title)}
+      description {generate(:description)}
+      level_of_interest {generate(:level_of_interest)}
+      city "City"
+      category
+      company
+    end
+  end
+  
   sequence :title do |n| 
     "Job #{n}"
   end
