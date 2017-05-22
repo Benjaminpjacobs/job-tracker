@@ -14,6 +14,9 @@ class Company < ActiveRecord::Base
       .group(:company)
       .average(:level_of_interest)
       .transform_values{|v| v.to_i}
-      .sort_by{|k, v| v}.pop(3).to_h 
+      .sort_by{|k, v| v}
+      .reverse
+      .shift(3)
+      .to_h 
   end
 end

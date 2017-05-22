@@ -33,6 +33,15 @@ RSpec.describe Job, type: :model do
       expect(result.values[0]).to be_kind_of(ActiveRecord::Relation)
     end
     
+    it "finds jobs in city" do 
+      job1, job2, job3 = create_list(:job, 3, city: "Cleveland")
+      job4, job5 = create_list(:job, 2, city: "Austin")
+      result = Job.jobs_in_city("Cleveland")
+
+      expect(result.values[0]).to be_kind_of(ActiveRecord::Relation)
+    end
+    
+
   end
   
 

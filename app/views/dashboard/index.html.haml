@@ -5,17 +5,18 @@
       %h5 Per Interest Level
       %div.list-group
       - @jobs_interest.each do |interest, count|
-        %div.list-group-item
+        %div.list-group-item#job-interest
           %h4.list-group-item-heading 
             Interest Level
             =interest
-          .list-group-item-text=count  
+          .list-group-item-text
+            =count  
     %div.col-md-4
       %h3 Top Companies  
       %h5 Ranked by Interest
       %div.list-group
       - @companies.each do |company, level|
-        %div.list-group-item
+        %div.list-group-item#top-companies
           %h4.list-group-item-heading=company.name
           .list-group-item-text 
             Average Level of Interest:
@@ -25,7 +26,7 @@
       %h5 Per City
       %div.list-group
       - @jobs_city.each do |city, count|
-        %div.list-group-item
+        %div.list-group-item#job-city
           %h4.list-group-item-heading 
             =link_to city, jobs_path(location: "#{city}")
           .list-group-item-text=count  
