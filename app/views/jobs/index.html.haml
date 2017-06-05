@@ -1,0 +1,19 @@
+%div.container
+  %div.row
+    %div.col-md-4.col-md-offset-1
+      %h3 Jobs:
+      %div.list-group
+      - @jobs.each do |key, all_jobs|
+        %div.list-group-item#listings
+          %h3.list-group-item-heading#city
+            =key
+          .list-group-item-text
+          -all_jobs.each do |job|
+            .list-group-item-text#job
+            %br/
+            %strong
+              =link_to job.title, company_job_path(job.company, job)
+            at 
+            =job.company.name
+            
+          

@@ -1,0 +1,7 @@
+%div.container
+  %div.row
+    %div.form-group.col-md-4.col-md-offset-1
+      %h2 Edit Category
+      = render partial: "shared/errors", locals: {target: @category}
+      %br
+      = render partial: "form"

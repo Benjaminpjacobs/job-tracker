@@ -1,0 +1,8 @@
+%div.container
+  %div.row
+    %div.form-group.col-md-4.col-md-offset-1
+      %h2 Enter a New Category!
+      = render partial: "shared/errors", locals: {target: @company}
+      %br
+      %br
+      = render partial: "form"

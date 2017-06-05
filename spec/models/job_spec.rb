@@ -1,36 +1,52 @@
 require 'rails_helper'
 
-describe Job do
+RSpec.describe Job, type: :model do
   describe "validations" do
-    context "invalid attributes" do
-      it "is invalid without a title" do
-        job = Job.new(level_of_interest: 80, description: "Wahoo", city: "Denver")
-        expect(job).to be_invalid
-      end
-
-      it "is invalid without a level of interest" do
-        job = Job.new(title: "Developer", description: "Wahoo", city: "Denver")
-        expect(job).to be_invalid
-      end
-
-      it "is invalid without a city" do
-        job = Job.new(title: "Developer", description: "Wahoo", level_of_interest: 80)
-        expect(job).to be_invalid
-      end
-    end
-
-    context "valid attributes" do
-      it "is valid with a title and level of interest" do
-        job = Job.new(title: "Developer", level_of_interest: 40, city: "Denver")
-        expect(job).to be_valid
-      end
-    end
+    it { should validate_presence_of(:title) }
+    it { should validate_presence_of(:level_of_interest) }
+    it { should validate_presence_of(:city) }
+    it { should validate_presence_of(:category) }
+  end
+  
+  describe "associations" do
+    it { should belong_to(:company) }
+    it { should belong_to(:category) }
+    it { should have_many(:comments) }
   end
 
-  describe "relationships" do
-    it "belongs to a company" do
-      job = Job.new(title: "Software", level_of_interest: 70, description: "Wahooo")
-      expect(job).to respond_to(:company)
+  describe "methods" do  
+    it "groups by city" do
+      job1, job2, job3 = create_list(:job, 3, city: "Cleveland")
+      job4, job5 = create_list(:job, 2, city: "Austin")
+      result = Job.group_by_city
+
+      expect(result.keys).to eq(['Austin', "Cleveland"])
+      expect(result.values[0]).to be_kind_of(ActiveRecord::Relation)
     end
+
+    it "groups by interest" do
+      job1, job2, job3 = create_list(:job, 3, level_of_interest: 30)
+      job4, job5 = create_list(:job, 2, level_of_interest: 20)
+      result = Job.group_by_interest
+
+      expect(result.keys).to eq(['Interest Level 30', 'Interest Level 20'])
+      expect(result.values[0]).to be_kind_of(ActiveRecord::Relation)
+    end
+    
+    it "finds jobs in city" do 
+      job1, job2, job3 = create_list(:job, 3, city: "Cleveland")
+      job4, job5 = create_list(:job, 2, city: "Austin")
+      result = Job.jobs_in_city("Cleveland")
+
+      expect(result.values[0]).to be_kind_of(ActiveRecord::Relation)
+    end
+    
+
   end
+  
+
 end
+
+
+
+

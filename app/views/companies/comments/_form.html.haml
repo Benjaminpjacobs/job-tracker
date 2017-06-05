@@ -1,0 +1,9 @@
+%div.container
+  %div.row
+    %div.col-md-6
+      = form_for [@company, @job, @comment] do |f|
+        = f.label :content
+        = f.text_area :content
+        = f.hidden_field :job_id, value: @job.id
+        %br
+        = f.submit

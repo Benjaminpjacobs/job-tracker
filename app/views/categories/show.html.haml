@@ -1,0 +1,19 @@
+%div.container
+  %div.row
+    %div.form-group.col-md-4.col-md-offset-1
+      %h2= @category.title
+      %div.list-group
+        -@category.jobs.each do |job|
+          %div.list-group-item
+            %h3.list-group-item-heading=job.title
+            .list-group-item-text
+              %strong Description:
+              =job.description
+            .list-group-item-text
+              %strong Level of 
+              interest:
+              =job.level_of_interest
+            .list-group-item-text
+              %strong City:
+              =job.city
+

@@ -1,0 +1,9 @@
+%div.container
+  %div.row
+    %div.col-md-6
+      .form-horizontal
+      = form_for @category do |f|
+        %div.form-group
+          = f.label :title
+          = f.text_field :title
+          = f.submit
